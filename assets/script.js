@@ -57,6 +57,20 @@ $("#search-button").on("click", function (event) {
             var currentDate = (forecastResponse.list[0]['dt_txt'].slice(0, -8));
 
             
+              //This gets the current temperature from the Ajax response and sets it to new variable.
+              //It converts it to Celsius.
+              //It reduces it to two digits after commas. 
+            var temp = ((forecastResponse.list[0].main.temp) -273.15).toFixed(2)
+
+            var wind = (forecastResponse.list[0].wind.speed).toFixed(1)
+
+            var humidity = (forecastResponse.list[0].main.humidity) 
+
+            console.log(humidity);
+
+    
+       
+
             // Creates a div for today header and sets its css display property
             //Creates a H2 for today header text
             //sets text of new H2
@@ -64,12 +78,43 @@ $("#search-button").on("click", function (event) {
             //Appends new H2 to new header div
             //Appends icon to new header div.
             var todayHeaderDiv = $("<div>")
-            todayHeaderDiv.css("display", "flex");
+            // todayHeaderDiv.css("display", "flex");
+
+
+            todayHeaderDiv.css( {"display": "flex", "marginBottom": "5px" })
+
             var todayH2 = $("<h2>")
             todayH2.text(city + " ( " + currentDate + ')')
             $("#today").append(todayHeaderDiv)
             todayHeaderDiv.append(todayH2)
             todayHeaderDiv.append(icon)
+          
+            //Creates a div for temperature
+            //Adds current temperature to the new div
+            //Appends the new div to today section
+            var weatherDiv = $("<div>")
+            weatherDiv.css("marginBottom", "5px")
+            weatherDiv.html("Temp: " + temp + " &deg;C")
+            $("#today").append(weatherDiv)
+
+            //Creates a div for temperature
+            //Adds current temperature to the new div
+            //Appends the new div to today section
+            var weatherDiv = $("<div>")
+            weatherDiv.css("marginBottom", "5px")
+            weatherDiv.html("Wind: " + wind + " KPH" )
+            $("#today").append(weatherDiv)
+
+             //Creates a div for temperature
+            //Adds current temperature to the new div
+            //Appends the new div to today section
+            var weatherDiv = $("<div>")
+            weatherDiv.css("marginBottom", "5px")
+            weatherDiv.html("Humidity: " +  + " %" )
+            $("#today").append(weatherDiv)
+
+
+
 
 
 
