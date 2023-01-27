@@ -1,16 +1,24 @@
+
+aside {
+    width: 250px
+}
+
+
 .input-group {
     display: flex;
     flex-direction: column;
-    margin: 10px;
+    width: 250px
 }
 
 #search-input {
 margin-bottom: 10px;
+width: 300px;
 
 }
 
 #form-heading {
-margin-left: 10px;;
+margin-left: 10px;
+font-weight: bold;
 }
 
 #weather-header {
@@ -23,10 +31,11 @@ margin-left: 10px;;
     font-weight: bold;
 }
 
-#today {
-background-color: brown;
+#forecast-header {
+    font-size: 3vh;
+    font-weight: bold;
 }
 
-#forecast {
-background-color: brown;
+#today {
+    border: solid 1.5px;
 }
