@@ -43,51 +43,35 @@ $("#search-button").on("click", function (event) {
             method: "GET"
         }).then(function (forecastResponse) {
 
-            //This gets the current time and date from the Ajax response, removes the time and sets it to a new variable. 
-            var currentDate = (forecastResponse.list[0]['dt_txt'].slice(0, -8));
+            //This gets the icon code from the Ajax response and sets it to a new variable. 
+            var iconCode = forecastResponse.list[0].weather[0].icon;
 
-
-
-
-
+            //This get the icon id from the ajax response and uses it to build a url of the icon. 
             var icon = $('<img>');
             icon.attr({
                 'id': 'icon',
-                'src': 'https://openweathermap.org/img/wn/10d.png'
+                'src': "https://openweathermap.org/img/wn/" + iconCode + ".png"
             });
 
+            //This gets the current time and date from the Ajax response, removes the time and sets it to a new variable. 
+            var currentDate = (forecastResponse.list[0]['dt_txt'].slice(0, -8));
 
-
-
-
-
-
-
-
-            // Creates a variable for today header and sets its ID
-            //Adds text to today header
-            //Appends header to today
+            
+            // Creates a div for today header and sets its css display property
+            //Creates a H2 for today header text
+            //sets text of new H2
+            //Appends new header div to today section
+            //Appends new H2 to new header div
+            //Appends icon to new header div.
             var todayHeaderDiv = $("<div>")
-            todayHeaderDiv.css("display, flex")
-
-          
-         
-      
-            todayHeaderDiv.css({
-             'display': 'flex'
-            });
-
-
-
+            todayHeaderDiv.css("display", "flex");
             var todayH2 = $("<h2>")
-            todayH2.attr("id", "today-header")
             todayH2.text(city + " ( " + currentDate + ')')
-
             $("#today").append(todayHeaderDiv)
             todayHeaderDiv.append(todayH2)
             todayHeaderDiv.append(icon)
 
-         
+
 
 
 
