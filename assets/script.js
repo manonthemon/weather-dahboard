@@ -105,68 +105,68 @@ $("#search-button").on("click", function (event) {
             $("#day4 h5.card-title").text((forecastResponse.list[29]['dt_txt'].slice(0, -8)));
             $("#day5 h5.card-title").text((forecastResponse.list[37]['dt_txt'].slice(0, -8)));
 
-
-
-            var iconCode = forecastResponse.list[5].weather[0].icon;
-
+            //Appending icons to forecast cards. 
+            var iconCode1 = forecastResponse.list[5].weather[0].icon;
+            var iconCode2 = forecastResponse.list[13].weather[0].icon;
+            var iconCode3 = forecastResponse.list[21].weather[0].icon;
+            var iconCode4 = forecastResponse.list[29].weather[0].icon;
+            var iconCode5 = forecastResponse.list[37].weather[0].icon;
+       
             var icon = $('<img>');
             icon.attr({
                 'id': 'icon',
-                'src': "https://openweathermap.org/img/wn/" + iconCode + ".png"
+                'src': "https://openweathermap.org/img/wn/" + iconCode1  + ".png"
             });
         
-
             $("#day1").append(icon)
-
-            var iconCode = forecastResponse.list[13].weather[0].icon;
 
             var icon = $('<img>');
             icon.attr({
                 'id': 'icon',
-                'src': "https://openweathermap.org/img/wn/" + iconCode + ".png"
+                'src': "https://openweathermap.org/img/wn/" + iconCode2  + ".png"
             });
         
             $("#day2").append(icon)
 
-              
-            // //^FORECAST SECTION
-            // //Creates a div for forecast cards and appends it to forecast section
-            // var forecastCardsDiv = $("<div>")
-            // $("#forecast").append(forecastCardsDiv)
+            var icon = $('<img>');
+            icon.attr({
+                'id': 'icon',
+                'src': "https://openweathermap.org/img/wn/" + iconCode3  + ".png"
+            });
+        
+            $("#day3").append(icon)
 
-            // //Creates a forecast card with header, icon and body with contents
-            // var forecastCard = $("<div>")
-            // forecastCard.addClass("card-body")
-            // forecastCard.css({
-            //     "backgroundColor": "rgba(49,62,78,255)",
-            //     "color": "white",
-            //     "width": "13rem",
-            //     "marginRight": "10px"
-            // })
-            // var forecastHeaderDiv = $("<div>")
-            // var forecastH4 = $("<h4>")
-            // forecastH4.css("fontWeight", "bold")
-            // forecastH4.text(currentDate)
-            // forecastCard.append(forecastHeaderDiv)
-            // forecastHeaderDiv.append(forecastH4)
-            // forecastHeaderDiv.append(icon)
-            // forecastCardsDiv.append(forecastCard)
+            var icon = $('<img>');
+            icon.attr({
+                'id': 'icon',
+                'src': "https://openweathermap.org/img/wn/" + iconCode4  + ".png"
+            });
+        
+            $("#day4").append(icon)
 
-            // //Adds temp, wind and humidity to the card
-            // var forecastContentDiv = $("<div>")
-            // forecastContentDiv.css("marginBottom", "5px")
-            // forecastContentDiv.html("Temp: " + temp + " &deg;C")
-            // forecastCard.append(forecastContentDiv)
+            var icon = $('<img>');
+            icon.attr({
+                'id': 'icon',
+                'src': "https://openweathermap.org/img/wn/" + iconCode5  + ".png"
+            });
+        
+            $("#day5").append(icon)
 
-            // var forecastContentDiv = $("<div>")
-            // forecastContentDiv.css("marginBottom", "5px")
-            // forecastContentDiv.html("Wind: " + wind + " KPH")
-            // forecastCard.append(forecastContentDiv)
+        
+            var temp1 = ((forecastResponse.list[5].main.temp) - 273.15).toFixed(2)
 
-            // var forecastContentDiv = $("<div>")
-            // forecastContentDiv.css("marginBottom", "5px")
-            // forecastContentDiv.html("Humidity: " + humidity + " %")
-            // forecastCard.append(forecastContentDiv)
+            var weatherDiv = $("<div>")
+            weatherDiv.css("marginBottom", "5px")
+            weatherDiv.html("Temp: " + temp1 + " &deg;C")
+            $("#day1").append(weatherDiv)
+
+
+                //This gets the current wind speed from Ajax response
+                var wind = (forecastResponse.list[0].wind.speed).toFixed(1)
+
+                //This gets the current humidity from Ajax response
+                var humidity = (forecastResponse.list[0].main.humidity)
+ 
 
             //TODO: Add actual forecast content to the cards
             //TODO: Create a loop for creating cards
