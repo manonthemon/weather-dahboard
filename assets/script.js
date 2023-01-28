@@ -65,7 +65,7 @@ $("#search-button").on("click", function (event) {
             //Appends new H2 to new header div
             //Appends icon to new header div
             var todayDiv = $("<div>")
-            todayDiv.css({ "border" : "1.5px solid black", "padding" : "5px" })
+            todayDiv.css({ "border" : "1.5px solid black", "padding" : "5px" , "width" : "67rem" })
             var todayHeaderDiv = $("<div>")
             todayHeaderDiv.css({ "display": "flex", "marginBottom": "5px" })
             var todayH2 = $("<h2>")
@@ -95,7 +95,53 @@ $("#search-button").on("click", function (event) {
             todayDiv.append(weatherDiv)
 
 
-            //TODO: Create weather forecast cards in bootstrap, add data from AJAX query  and append them to the #forecast section
+        
+
+            //TODO: Create weather forecast cards in bootstrap and append them to the #forecast section
+
+    
+
+var forecastCardsDiv = $("<div>")
+forecastCardsDiv.css = ( "display" , "flex")
+
+
+
+$("#forecast").append(forecastCardsDiv)
+
+            var forecastCard = $("<div>")
+            forecastCard.addClass("card-body")
+            forecastCard.css({ 
+            "backgroundColor":"rgba(49,62,78,255)", 
+            "color" : "white", 
+            "width": "13rem",
+        "marginRight" : "10px"})
+            var forecastHeaderDiv = $("<div>")
+            var forecastH4 = $("<h4>")
+            forecastH4.css("fontWeight", "bold")
+            forecastH4.text(currentDate)
+            forecastCard.append(forecastHeaderDiv)
+            forecastHeaderDiv.append(forecastH4)
+            forecastHeaderDiv.append(icon)
+            forecastCardsDiv.append(forecastCard)
+        
+            var forecastContentDiv = $("<div>")
+            forecastContentDiv.css("marginBottom", "5px")
+            forecastContentDiv.html("Temp: " + temp + " &deg;C")
+            forecastCard.append(forecastContentDiv)
+
+            var forecastContentDiv = $("<div>")
+            forecastContentDiv.css("marginBottom", "5px")
+            forecastContentDiv.html("Wind: " + wind + " KPH")
+            forecastCard.append(forecastContentDiv)
+
+            var forecastContentDiv = $("<div>")
+            forecastContentDiv.css("marginBottom", "5px")
+            forecastContentDiv.html("Humidity: " + humidity + " %")
+            forecastCard.append(forecastContentDiv)
+
+
+
+
             //TODO: Create code making new button each time user types in search and clicks the button. 
             //TODO: Make sure the city name is displayed with a capital letter.
         })

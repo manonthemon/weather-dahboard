@@ -24,6 +24,7 @@ font-weight: bold;
 #weather-header {
     background-image: linear-gradient(to right, rgb(110, 142, 189) , rgb(37, 14, 129));
     padding: 5px;
+    margin-bottom: 20px;
 }
 
 #page-heading {
@@ -34,4 +35,9 @@ font-weight: bold;
 #forecast-header {
     font-size: 3vh;
     font-weight: bold;
+    margin-top: 10px
+}
+
+#forecast {
+    display: flex;
 }
