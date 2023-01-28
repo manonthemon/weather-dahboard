@@ -41,3 +41,16 @@ font-weight: bold;
 #forecast {
     display: flex;
 }
+
+.card{
+    width: 18rem;
+    margin-right: 15px;
+    background-color: rgba(49,62,78,255);
+    color: white;
+    padding: 0px;
+}
+
+.card-body {
+    background-color: rgba(49,62,78,255);
+    padding: -0px;
+}

@@ -95,46 +95,78 @@ $("#search-button").on("click", function (event) {
             weatherDiv.html("Humidity: " + humidity + " %")
             todayDiv.append(weatherDiv)
 
+            console.log(forecastQueryURL);
+
+            //Changing headings of forecast cards to upcoming dates
+
+            $("#day1 h5.card-title").text((forecastResponse.list[5]['dt_txt'].slice(0, -8)));
+            $("#day2 h5.card-title").text((forecastResponse.list[13]['dt_txt'].slice(0, -8)));
+            $("#day3 h5.card-title").text((forecastResponse.list[21]['dt_txt'].slice(0, -8)));
+            $("#day4 h5.card-title").text((forecastResponse.list[29]['dt_txt'].slice(0, -8)));
+            $("#day5 h5.card-title").text((forecastResponse.list[37]['dt_txt'].slice(0, -8)));
 
 
-            //^FORECAST SECTION
-            //Creates a div for forecast cards and appends it to forecast section
-            var forecastCardsDiv = $("<div>")
-            $("#forecast").append(forecastCardsDiv)
 
-            //Creates a forecast card with header, icon and body with contents
-            var forecastCard = $("<div>")
-            forecastCard.addClass("card-body")
-            forecastCard.css({
-                "backgroundColor": "rgba(49,62,78,255)",
-                "color": "white",
-                "width": "13rem",
-                "marginRight": "10px"
-            })
-            var forecastHeaderDiv = $("<div>")
-            var forecastH4 = $("<h4>")
-            forecastH4.css("fontWeight", "bold")
-            forecastH4.text(currentDate)
-            forecastCard.append(forecastHeaderDiv)
-            forecastHeaderDiv.append(forecastH4)
-            forecastHeaderDiv.append(icon)
-            forecastCardsDiv.append(forecastCard)
+            var iconCode = forecastResponse.list[5].weather[0].icon;
 
-            //Adds temp, wind and humidity to the card
-            var forecastContentDiv = $("<div>")
-            forecastContentDiv.css("marginBottom", "5px")
-            forecastContentDiv.html("Temp: " + temp + " &deg;C")
-            forecastCard.append(forecastContentDiv)
+            var icon = $('<img>');
+            icon.attr({
+                'id': 'icon',
+                'src': "https://openweathermap.org/img/wn/" + iconCode + ".png"
+            });
+        
 
-            var forecastContentDiv = $("<div>")
-            forecastContentDiv.css("marginBottom", "5px")
-            forecastContentDiv.html("Wind: " + wind + " KPH")
-            forecastCard.append(forecastContentDiv)
+            $("#day1").append(icon)
 
-            var forecastContentDiv = $("<div>")
-            forecastContentDiv.css("marginBottom", "5px")
-            forecastContentDiv.html("Humidity: " + humidity + " %")
-            forecastCard.append(forecastContentDiv)
+            var iconCode = forecastResponse.list[13].weather[0].icon;
+
+            var icon = $('<img>');
+            icon.attr({
+                'id': 'icon',
+                'src': "https://openweathermap.org/img/wn/" + iconCode + ".png"
+            });
+        
+            $("#day2").append(icon)
+
+              
+            // //^FORECAST SECTION
+            // //Creates a div for forecast cards and appends it to forecast section
+            // var forecastCardsDiv = $("<div>")
+            // $("#forecast").append(forecastCardsDiv)
+
+            // //Creates a forecast card with header, icon and body with contents
+            // var forecastCard = $("<div>")
+            // forecastCard.addClass("card-body")
+            // forecastCard.css({
+            //     "backgroundColor": "rgba(49,62,78,255)",
+            //     "color": "white",
+            //     "width": "13rem",
+            //     "marginRight": "10px"
+            // })
+            // var forecastHeaderDiv = $("<div>")
+            // var forecastH4 = $("<h4>")
+            // forecastH4.css("fontWeight", "bold")
+            // forecastH4.text(currentDate)
+            // forecastCard.append(forecastHeaderDiv)
+            // forecastHeaderDiv.append(forecastH4)
+            // forecastHeaderDiv.append(icon)
+            // forecastCardsDiv.append(forecastCard)
+
+            // //Adds temp, wind and humidity to the card
+            // var forecastContentDiv = $("<div>")
+            // forecastContentDiv.css("marginBottom", "5px")
+            // forecastContentDiv.html("Temp: " + temp + " &deg;C")
+            // forecastCard.append(forecastContentDiv)
+
+            // var forecastContentDiv = $("<div>")
+            // forecastContentDiv.css("marginBottom", "5px")
+            // forecastContentDiv.html("Wind: " + wind + " KPH")
+            // forecastCard.append(forecastContentDiv)
+
+            // var forecastContentDiv = $("<div>")
+            // forecastContentDiv.css("marginBottom", "5px")
+            // forecastContentDiv.html("Humidity: " + humidity + " %")
+            // forecastCard.append(forecastContentDiv)
 
             //TODO: Add actual forecast content to the cards
             //TODO: Create a loop for creating cards
