@@ -56,6 +56,7 @@ $("#search-button").on("click", function (event) {
             //This gets the current humidity from Ajax response
             var humidity = (forecastResponse.list[0].main.humidity)
 
+            //^TODAY SECTION
             // Creates a div for today weather and sets its styles
             //Creates a div for today header and sets its css display property and margin
             //Creates a H2 for today header text and adds its style
@@ -65,7 +66,7 @@ $("#search-button").on("click", function (event) {
             //Appends new H2 to new header div
             //Appends icon to new header div
             var todayDiv = $("<div>")
-            todayDiv.css({ "border" : "1.5px solid black", "padding" : "5px" , "width" : "67rem" })
+            todayDiv.css({ "border": "1.5px solid black", "padding": "5px", "width": "67rem" })
             var todayHeaderDiv = $("<div>")
             todayHeaderDiv.css({ "display": "flex", "marginBottom": "5px" })
             var todayH2 = $("<h2>")
@@ -95,26 +96,21 @@ $("#search-button").on("click", function (event) {
             todayDiv.append(weatherDiv)
 
 
-        
 
-            //TODO: Create weather forecast cards in bootstrap and append them to the #forecast section
+            //^FORECAST SECTION
+            //Creates a div for forecast cards and appends it to forecast section
+            var forecastCardsDiv = $("<div>")
+            $("#forecast").append(forecastCardsDiv)
 
-    
-
-var forecastCardsDiv = $("<div>")
-forecastCardsDiv.css = ( "display" , "flex")
-
-
-
-$("#forecast").append(forecastCardsDiv)
-
+            //Creates a forecast card with header, icon and body with contents
             var forecastCard = $("<div>")
             forecastCard.addClass("card-body")
-            forecastCard.css({ 
-            "backgroundColor":"rgba(49,62,78,255)", 
-            "color" : "white", 
-            "width": "13rem",
-        "marginRight" : "10px"})
+            forecastCard.css({
+                "backgroundColor": "rgba(49,62,78,255)",
+                "color": "white",
+                "width": "13rem",
+                "marginRight": "10px"
+            })
             var forecastHeaderDiv = $("<div>")
             var forecastH4 = $("<h4>")
             forecastH4.css("fontWeight", "bold")
@@ -123,7 +119,8 @@ $("#forecast").append(forecastCardsDiv)
             forecastHeaderDiv.append(forecastH4)
             forecastHeaderDiv.append(icon)
             forecastCardsDiv.append(forecastCard)
-        
+
+            //Adds temp, wind and humidity to the card
             var forecastContentDiv = $("<div>")
             forecastContentDiv.css("marginBottom", "5px")
             forecastContentDiv.html("Temp: " + temp + " &deg;C")
@@ -139,9 +136,8 @@ $("#forecast").append(forecastCardsDiv)
             forecastContentDiv.html("Humidity: " + humidity + " %")
             forecastCard.append(forecastContentDiv)
 
-
-
-
+            //TODO: Add actual forecast content to the cards
+            //TODO: Create a loop for creating cards
             //TODO: Create code making new button each time user types in search and clicks the button. 
             //TODO: Make sure the city name is displayed with a capital letter.
         })
