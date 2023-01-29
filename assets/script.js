@@ -1,3 +1,5 @@
+//Removes cards on load.
+$("#forecast").css("display", "none");
 
 // This is the .on("click") function of the main search button
 $("#search-button").on("click", function (event) {
@@ -5,8 +7,16 @@ $("#search-button").on("click", function (event) {
     // This prevents page reload
     event.preventDefault();
 
+
     //This clears the today section before printing new query results
+
     $("#today").html("")
+    if ($("#forecast").css("display", "flex"))
+
+    //TODO : Resolve problem with cards stacking up 
+
+   
+    
 
     // This builds the URL to query the database about the geographical coordinates of user selected location 
     var APIKey = "f330e129449abaac86bd926a76054f1f";
@@ -152,6 +162,8 @@ $("#search-button").on("click", function (event) {
         
             $("#day5").append(icon)
 
+
+            // Appending temperature to forecast cards
         
             var temp1 = ((forecastResponse.list[5].main.temp) - 273.15).toFixed(2)
 
@@ -160,15 +172,109 @@ $("#search-button").on("click", function (event) {
             weatherDiv.html("Temp: " + temp1 + " &deg;C")
             $("#day1").append(weatherDiv)
 
+            var temp1 = ((forecastResponse.list[13].main.temp) - 273.15).toFixed(2)
 
-                //This gets the current wind speed from Ajax response
-                var wind = (forecastResponse.list[0].wind.speed).toFixed(1)
+            var weatherDiv = $("<div>")
+            weatherDiv.css("marginBottom", "5px")
+            weatherDiv.html("Temp: " + temp1 + " &deg;C")
+            $("#day2").append(weatherDiv)
 
-                //This gets the current humidity from Ajax response
-                var humidity = (forecastResponse.list[0].main.humidity)
+            var temp1 = ((forecastResponse.list[21].main.temp) - 273.15).toFixed(2)
+
+            var weatherDiv = $("<div>")
+            weatherDiv.css("marginBottom", "5px")
+            weatherDiv.html("Temp: " + temp1 + " &deg;C")
+            $("#day3").append(weatherDiv)
+
+            var temp1 = ((forecastResponse.list[29].main.temp) - 273.15).toFixed(2)
+
+            var weatherDiv = $("<div>")
+            weatherDiv.css("marginBottom", "5px")
+            weatherDiv.html("Temp: " + temp1 + " &deg;C")
+            $("#day4").append(weatherDiv)
+
+            var temp1 = ((forecastResponse.list[37].main.temp) - 273.15).toFixed(2)
+
+            var weatherDiv = $("<div>")
+            weatherDiv.css("marginBottom", "5px")
+            weatherDiv.html("Temp: " + temp1 + " &deg;C")
+            $("#day5").append(weatherDiv)
+
+
+        // Appending wind to forecast cards
+                var wind = (forecastResponse.list[5].wind.speed).toFixed(1)
+
+                var weatherDiv = $("<div>")
+                weatherDiv.css("marginBottom", "5px")
+                weatherDiv.html("Wind: " + wind + " KPH")
+                $("#day1").append(weatherDiv)
+
+                var wind = (forecastResponse.list[13].wind.speed).toFixed(1)
+
+                var weatherDiv = $("<div>")
+                weatherDiv.css("marginBottom", "5px")
+                weatherDiv.html("Wind: " + wind + " KPH")
+                $("#day2").append(weatherDiv)
+
+                var wind = (forecastResponse.list[21].wind.speed).toFixed(1)
+
+                var weatherDiv = $("<div>")
+                weatherDiv.css("marginBottom", "5px")
+                weatherDiv.html("Wind: " + wind + " KPH")
+                $("#day3").append(weatherDiv)
+
+                var wind = (forecastResponse.list[29].wind.speed).toFixed(1)
+
+                var weatherDiv = $("<div>")
+                weatherDiv.css("marginBottom", "5px")
+                weatherDiv.html("Wind: " + wind + " KPH")
+                $("#day4").append(weatherDiv)
+
+                var wind = (forecastResponse.list[37].wind.speed).toFixed(1)
+
+                var weatherDiv = $("<div>")
+                weatherDiv.css("marginBottom", "5px")
+                weatherDiv.html("Wind: " + wind + " KPH")
+                $("#day5").append(weatherDiv)
+
+                 // Appending humidity to forecast cards
+                var humidity = (forecastResponse.list[5].main.humidity)
+
+                var weatherDiv = $("<div>")
+                weatherDiv.css("marginBottom", "5px")
+                weatherDiv.html("Humidity: " + humidity + " %")
+                $("#day1").append(weatherDiv)
+
+                var humidity = (forecastResponse.list[13].main.humidity)
+
+                var weatherDiv = $("<div>")
+                weatherDiv.css("marginBottom", "5px")
+                weatherDiv.html("Humidity: " + humidity + " %")
+                $("#day2").append(weatherDiv)
+
+                var humidity = (forecastResponse.list[21].main.humidity)
+
+                var weatherDiv = $("<div>")
+                weatherDiv.css("marginBottom", "5px")
+                weatherDiv.html("Humidity: " + humidity + " %")
+                $("#day3").append(weatherDiv)
+
+                var humidity = (forecastResponse.list[29].main.humidity)
+
+                var weatherDiv = $("<div>")
+                weatherDiv.css("marginBottom", "5px")
+                weatherDiv.html("Humidity: " + humidity + " %")
+                $("#day4").append(weatherDiv)
+
+                var humidity = (forecastResponse.list[37].main.humidity)
+
+                var weatherDiv = $("<div>")
+                weatherDiv.css("marginBottom", "5px")
+                weatherDiv.html("Humidity: " + humidity + " %")
+                $("#day5").append(weatherDiv)
  
 
-            //TODO: Add actual forecast content to the cards
+
             //TODO: Create a loop for creating cards
             //TODO: Create code making new button each time user types in search and clicks the button. 
             //TODO: Make sure the city name is displayed with a capital letter.
