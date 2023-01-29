@@ -26,6 +26,7 @@ $("#search-button").on("click", function (event) {
         // building the new url for the query, this time about the weather forecast, using coordinates received above
         var forecastQueryURL = "https://api.openweathermap.org/data/2.5/forecast?lat=" + latitude + "&lon=" + longitude + "&appid=" + APIKey
 
+       
         //AJAX call to get the data about weather forecast
         $.ajax({
             url: forecastQueryURL,
@@ -33,6 +34,7 @@ $("#search-button").on("click", function (event) {
         }).then(function (forecastResponse) {
 
             console.log(forecastQueryURL);
+            console.log(forecastResponse);
 
             //Variable for current date
      
@@ -72,36 +74,73 @@ $("#search-button").on("click", function (event) {
             //^FORECAST SECTION
 
       
-              //A loop generate cards holding weather forecast
+              //A loop to generate cards holding weather forecast with date headings
               for (var i = 0; i < 5; i++) {
-
-
-                var iconCode = forecastResponse.list[0].weather[0].icon;
-                var icon = $('<img>');
-                icon.attr({
-                    'id': 'icon',
-                    'src': "https://openweathermap.org/img/wn/" + iconCode + ".png"
-                });
-
                 var futureDate = moment().add(i+1, 'days').format("DD/MM/YYYY");
-                console.log(futureDate);
-    
                 var forecastCard = $("<div>");
                 forecastCard.addClass("forecast-card-body");
                 forecastCard.append("<h4>" + futureDate + " </h4>")
-                .append(icon)
-                .append("<p>Temp: " + temp + " °C</p>")
-                .append("<p>Wind: " + wind + " KPH</p>")
-                .append("<p>Humidity: " + humidity + " %</p>");
                 $("#forecast").append(forecastCard);
+            }
+
+
+
+
+            for (var i = 7; i < forecastResponse.list.length; i+=8) {
+                var futureIconCode = forecastResponse.list[i].weather[0].icon;
+                console.log(futureIconCode);
+                  var futureIcon = $('<img>');
+                futureIcon.attr({
+                    'id': 'icon',
+                    'src': "https://openweathermap.org/img/wn/" + futureIconCode + ".png"     
+                });
+
+            console.log(futureIcon);
+            }
+
+
+
+              for (var i = 0; i < 5; i++) { 
+
+                var forecastCard = $("<div>");
+                
+                    forecastCard.append(futureIcon)
+                
                 }
+                 
+            
 
-            // $("#day1 h5.card-title").text((forecastResponse.list[5]['dt_txt'].slice(0, -8)));
-            // $("#day2 h5.card-title").text((forecastResponse.list[13]['dt_txt'].slice(0, -8)));
-            // $("#day3 h5.card-title").text((forecastResponse.list[21]['dt_txt'].slice(0, -8)));
-            // $("#day4 h5.card-title").text((forecastResponse.list[29]['dt_txt'].slice(0, -8)));
-            // $("#day5 h5.card-title").text((forecastResponse.list[37]['dt_txt'].slice(0, -8)));
+                
+        
+          
 
+
+    
+                // .append("<p>Temp: " + temp + " °C</p>")
+                // .append("<p>Wind: " + wind + " KPH</p>")
+                // .append("<p>Humidity: " + humidity + " %</p>");
+              
+
+
+
+                
+                // var futureIconCode = forecastResponse.list[i].weather[0].icon;
+                // var futureIcon = $('<img>');
+                // futureIcon.attr({
+                //     'id': 'icon',
+                //     'src': "https://openweathermap.org/img/wn/" + futureIconCode + ".png"
+                // });
+
+                
+                // var futureIconCode = forecastResponse.list[i].weather[0].icon;
+                // var futureIcon = $('<img>');
+                // futureIcon.attr({
+                //     'id': 'icon',
+                //     'src': "https://openweathermap.org/img/wn/" + futureIconCode + ".png"
+                // });
+
+
+     
             // //Appending icons to forecast cards. 
             // var iconCode1 = forecastResponse.list[5].weather[0].icon;
             // var iconCode2 = forecastResponse.list[13].weather[0].icon;
