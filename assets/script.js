@@ -1,5 +1,5 @@
 //Removes cards on load.
-$("#forecast").css("display", "none");
+// $("#forecast").css("display", "none");
 
 // This is the .on("click") function of the main search button
 $("#search-button").on("click", function (event) {
@@ -11,7 +11,7 @@ $("#search-button").on("click", function (event) {
     //This clears the today section before printing new query results
 
     $("#today").html("")
-    if ($("#forecast").css("display", "flex"))
+    
 
     //TODO : Resolve problem with cards stacking up 
 
@@ -272,7 +272,6 @@ $("#search-button").on("click", function (event) {
                 weatherDiv.css("marginBottom", "5px")
                 weatherDiv.html("Humidity: " + humidity + " %")
                 $("#day5").append(weatherDiv)
- 
 
 
             //TODO: Create a loop for creating cards
