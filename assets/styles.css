@@ -79,3 +79,8 @@ font-weight: bold;
 #icon {
     width: 7vh;
 }
+
+.input-group-append {
+    display: flex;
+    flex-direction: column;
+}
