@@ -1,4 +1,5 @@
 
+
 aside {
     width: 250px
 }
@@ -32,6 +33,13 @@ font-weight: bold;
     font-weight: bold;
 }
 
+
+#today-header {
+    font-size: 5vh;
+    font-weight: bold;
+}
+
+
 #forecast-header {
     font-size: 3vh;
     font-weight: bold;
@@ -42,16 +50,32 @@ font-weight: bold;
     display: flex;
 }
 
-.card{
-    width: 18rem;
-    margin-right: 15px;
-    background-color: rgba(49,62,78,255);
-    color: white;
-    padding: 0px;
+.today-card-body {
+    display : flex;
+    flex-direction : column;
+     margin-right :  15px;
+     text-align: left;
+     padding: 25px;
+     border: solid 1.5px;
+     margin-bottom: 20px;
 }
 
-.card-body {
-    background-color: rgba(49,62,78,255);
-    padding: -0px;
+.today-card-body h2 {
+    font-weight: bold;
+    padding-top: 10px;
 }
 
+.forecast-card-body {
+    display : flex;
+    flex-direction : column;
+     background-color :  rgba(49,62,78,255);
+     color :  white;
+     margin-right :  15px;
+     text-align: left;
+     width: 15rem;
+     padding: 25px;
+}
+
+#icon {
+    width: 7vh;
+}
