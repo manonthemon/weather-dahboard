@@ -35,7 +35,8 @@ $("#search-button").on("click", function (event) {
             console.log(forecastQueryURL);
 
             //Variable for current date
-            var currentDate = (forecastResponse.list[0]['dt_txt'].slice(0, -8));
+     
+            var currentDate = moment().format("DD/MM/YYYY"); 
 
             // Variables for current temp, wind and humidity
             var temp = ((forecastResponse.list[0].main.temp) - 273.15).toFixed(2)
@@ -70,23 +71,30 @@ $("#search-button").on("click", function (event) {
             
             //^FORECAST SECTION
 
-            // Code to generate weather icon
-            var iconCode = forecastResponse.list[0].weather[0].icon;
-            var icon = $('<img>');
-            icon.attr({
-                'id': 'icon',
-                'src': "https://openweathermap.org/img/wn/" + iconCode + ".png"
-            });
+      
+              //A loop generate cards holding weather forecast
+              for (var i = 0; i < 5; i++) {
 
-              //Generate cards holding weather forecast
-            var forecastCard = $("<div>");
-            forecastCard.addClass("forecast-card-body");
-            forecastCard.append("<h4>" + currentDate + " </h4>")
+
+                var iconCode = forecastResponse.list[0].weather[0].icon;
+                var icon = $('<img>');
+                icon.attr({
+                    'id': 'icon',
+                    'src': "https://openweathermap.org/img/wn/" + iconCode + ".png"
+                });
+
+                var futureDate = moment().add(i+1, 'days').format("DD/MM/YYYY");
+                console.log(futureDate);
+    
+                var forecastCard = $("<div>");
+                forecastCard.addClass("forecast-card-body");
+                forecastCard.append("<h4>" + futureDate + " </h4>")
                 .append(icon)
-                .append("<p>Temp: " + temp + " &deg;C</p>")
+                .append("<p>Temp: " + temp + " °C</p>")
                 .append("<p>Wind: " + wind + " KPH</p>")
                 .append("<p>Humidity: " + humidity + " %</p>");
-            $("#forecast").append(forecastCard);
+                $("#forecast").append(forecastCard);
+                }
 
             // $("#day1 h5.card-title").text((forecastResponse.list[5]['dt_txt'].slice(0, -8)));
             // $("#day2 h5.card-title").text((forecastResponse.list[13]['dt_txt'].slice(0, -8)));
