@@ -134,6 +134,7 @@ function searchWeather() {
             }
         })
     })
+    
 }
 
 // MAIN SEARCH BUTTON 
