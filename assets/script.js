@@ -260,7 +260,6 @@ function cityButtonMaker() {
 }
 
 
-
 // Reloading city buttons on page refresh
 
 $(document).ready(function () {
@@ -370,3 +369,5 @@ $(document).ready(function () {
     }
 })
 
+//TODO Try to check for invalid city inputs
+//TODO Refactor, add comments
