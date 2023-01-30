@@ -18,7 +18,7 @@ function searchWeather(cityButtonText) {
     // Takes variable used in making the URL takes either the value of function argument or of the search input
     var city = cityButtonText || $('#search-input').val(); 
     // This builds the URL to query the database about the geographical coordinates of user selected location 
-    var geoQueryUrl = "http://api.openweathermap.org/geo/1.0/direct?q=" + city + "&appid=" + APIKey
+    var geoQueryUrl = "http://cors-anywhere.herokuapp.com/api.openweathermap.org/geo/1.0/direct?q=" + city + "&appid=" + APIKey
     //This clears the today and forecast sections before printing new query results
     $("#today").html("")
     $("#forecast").html("")
@@ -32,7 +32,7 @@ function searchWeather(cityButtonText) {
         var latitude = (geoResponse[0].lat).toFixed(2)
         var longitude = (geoResponse[0].lon).toFixed(2)
         // building the new url for the query, this time about the weather forecast, using coordinates received above
-        var forecastQueryURL = "https://api.openweathermap.org/data/2.5/forecast?lat=" + latitude + "&lon=" + longitude + "&appid=" + APIKey
+        var forecastQueryURL = "https://cors-anywhere.herokuapp.com/api.openweathermap.org/data/2.5/forecast?lat=" + latitude + "&lon=" + longitude + "&appid=" + APIKey
 
         //AJAX call to get the data about weather forecast
         $.ajax({
