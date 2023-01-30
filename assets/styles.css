@@ -23,7 +23,7 @@ font-weight: bold;
 }
 
 #weather-header {
-    background-image: linear-gradient(to right, rgb(110, 142, 189) , rgb(37, 14, 129));
+    background-image: linear-gradient(to right, rgb(19, 139, 137) , rgb(32, 99, 180));
     padding: 5px;
     margin-bottom: 20px;
 }
@@ -33,12 +33,10 @@ font-weight: bold;
     font-weight: bold;
 }
 
-
 #today-header {
     font-size: 5vh;
     font-weight: bold;
 }
-
 
 #forecast-header {
     font-size: 3vh;
