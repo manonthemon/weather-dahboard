@@ -139,7 +139,7 @@ else if (!$('#search-input').val()) {
 // This is the .on("click") event of the main search button
 $("#search-button").on("click", function (event) {
     event.preventDefault()
-    console.log("Main search button clicked");
+
     searchWeather()
     cityButtonMaker()
   
