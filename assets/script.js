@@ -1,3 +1,46 @@
+
+// $(document).ready(function() {
+
+//     var cityArray = []
+
+//     if (cityArray.length === 0) {
+//         return
+//     }
+
+//      cityArray = JSON.parse(localStorage.getItem("cityArray")) 
+//      console.log(cityArray);
+//     for (i=1; i<cityArray.length; i++) {
+//        var  cityButton = $("<button>")
+//        cityButton.addClass("btn btn-primary btn-block")
+//        cityButton.text(cityArray[i]) 
+//        $(".input-group-append").prepend(cityButton)
+
+
+//        var cityButton = $("#city-button")
+
+//     cityButton.on("click", function (event) {
+
+//         event.preventDefault();
+//     })
+//     }
+// })
+
+
+// Clear all button click event
+//TODO Add clearing of sections
+
+$("#clear-button").on("click", function (event) {
+
+    event.preventDefault();
+    localStorage.clear()
+    console.log("Clear button clicked");
+})
+
+
+
+
+
+
 // This is the .on("click") function of the main search button
 $("#search-button").on("click", function (event) {
 
@@ -107,46 +150,42 @@ $("#search-button").on("click", function (event) {
         })
     });
 
-    //TODO BUTTONS LOCAL STORAGE 
-   
+   // PERSISTENT CITY BUTTONS
     //This creates an array with typed in cities sent to local storage. 
-    // Then it creates a button for each typed in city
+    var city = $('#search-input').val();
+    cityArray = JSON.parse(localStorage.getItem("cityArray")) || []
 
-//     cityArray = JSON.parse(localStorage.getItem("cityArray")) || []
-//     if (cityArray.includes(city)) 
-//     console.log("city already selected");
-//     else {
-//     cityArray.push( $('#search-input').val())
-    
-//     localStorage.setItem("cityArray", JSON.stringify(cityArray));
-//     }
+    //Then it checks if button for a city already exists. If yes, returns.
+    if (cityArray.includes(city)) {
+    console.log("city already selected")
+    return}
+
+   //Then it checks if text field is not empty. If yes, returns. If not, creates a button.
+    else if (city == "") {
+        console.log("No city name provided")
+        return
+          } 
+    else {
+    cityArray.push( $('#search-input').val())
+    localStorage.setItem("cityArray", JSON.stringify(cityArray));
+    var cityButton = $("<button>")
+    cityButton.attr({"id": "search-button",
+    "type": "submit"})
+    cityButton.addClass("btn btn-primary btn-block city-button")
+    cityButton.text(city) 
+    $(".input-group-append").prepend(cityButton)
+
+    //The new button click event
+    cityButton.on("click", function (event) {
+        event.preventDefault();
+        console.log("city button clicked");
+
+    })
+    }
   
 
-//     var cityButton = $("<button>")
-//     cityButton.text("TEST") 
-//     localStorage.setItem("button", cityButton.innerHTML);
-//     $(".input-group-append").append(cityButton)
 
-//     var button = localStorage.getItem("button");
-// if (button) {
-//   $(cityButton).html(button);
-//   $(".input-group-append").append(cityButton)
-// }
-   
-      
-    // var cityButton = $("<button>")
-    // cityButton.text(city)
-    // cityButton.attr({"id": "search-button",
-    // "type": "submit"})
-    // cityButton.addClass("btn btn-primary btn-block")
-    // localStorage.setItem("cityButton", JSON.stringify(cityButton));
-    // // cityButton.css("margintop", "100px")
-    // $(".input-group-append").append(cityButton)
-
-    // cityButton.on("click", function (event) {
-
-    //     // This prevents page reload
-    //     event.preventDefault();
+  
 
 
 })
