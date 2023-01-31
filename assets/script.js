@@ -94,6 +94,7 @@ function searchWeather(cityButtonText) {
                 forecastCard.append("<p>Temp: " + temps[i] + " °C</p>" + "<p>Wind: " + winds[i] + " KPH</p>" + "<p>Humidity: " + humid[i] + " %</p>");
                 $("#forecast").append(forecastCard);
             }
+           
         })
     })
 }
@@ -104,12 +105,13 @@ $("#search-button").on("click", function (event) {
     event.preventDefault()
     //This receives an array with searched cities from local storage or creates a new array if local storage empty
     cityArray = JSON.parse(localStorage.getItem("cityArray")) || [];
+    console.log(cityArray);
     // Then it checks if searched city already exists in array, If yes, returns.
     if (cityArray.includes($('#search-input').val())) {
         console.log("city already selected")
         return;
     }
-    //Then it checks if text field is not empty. If yes, returns. If not, pushes city to local storage and calls functions to search for Weather and create city buttons.
+    //Then it checks if text field is not empty. If yes, returns. If not, pushes city to local storage and calls functions to search for weather and create city buttons.
     if (!$('#search-input').val()) {
         alert("Please enter a valid city name");
         return;
@@ -120,6 +122,9 @@ $("#search-button").on("click", function (event) {
     }
     searchWeather()
     cityButtonMaker()
+
+    // Clears search input field after search is clicked
+    $(".form-input ").val("");
 
     // ^NEW BUTTONS
     // Function to create buttons with previously searched city names
@@ -169,6 +174,7 @@ $(document).ready(function () {
         })
     }
 })
+
 
 //TODO Try to check for invalid city inputs
 //TODO to change letters to capital

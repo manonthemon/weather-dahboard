@@ -24,7 +24,7 @@
         <form id="search-form" class="form">
           <div class="form-inline form-group">
             <div class="input-group">
-              <input class="form-input weather-search" type="text" id="search-input" placeholder="City Name"
+              <input class="form-input weather-search" type="text" pattern="[A-Za-z]+" id="search-input"  maxlength = 85 placeholder="City Name"
                 aria-labelledby="form-heading" aria-controls="today forecast" />
                 <button type="submit" class="btn btn-primary btn-block" id="search-button" aria-label="submit search">
                   Search
