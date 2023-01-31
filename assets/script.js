@@ -129,26 +129,42 @@ $("#search-button").on("click", function (event) {
     
 })
 
-    // ^CITY BUTTONS MAKER FUNCTION
+// ^CITY BUTTONS MAKER FUNCTION
     // Function to create buttons with previously searched city names and defined their on click event
     function cityButtonMaker() {
-        var cityButton = $("<button>");
-        cityButton.text($('#search-input').val());
-        cityButton.attr({
-            "id": "city-button",
-            "type": "button"
-        });
-        cityButton.addClass("btn btn-info btn-block city-button");
-        $(".input-group-append").prepend(cityButton);
-        //Adds click event to the new button. Is passes the text from the button as a function argument to generate new AJAX query URL when calling searchWeather()
-        cityButton.on("click", function (event) {
-            event.preventDefault()
-            var cityButtonText = ($(this).text());
-            searchWeather(cityButtonText)
-        })
-    }
 
-// ^ PERSISTENT BUTTONS
+            var city = $('#search-input').val();
+   
+            var geoQueryUrl = "https://api.openweathermap.org/geo/1.0/direct?q=" + city + "&appid=" + APIKey;
+    
+            $.ajax({
+                url: geoQueryUrl,
+                method: "GET"
+            }).then(function (geoResponse) {
+                // Assigning lat and lon from resulting object to variables to be used in next query URL
+            if (geoResponse.length == 0) {
+                alert("Please enter a valid location name")}
+            
+else {
+                var cityButton = $("<button>");
+                cityButton.text(city);
+                cityButton.attr({
+                    "id": "city-button",
+                    "type": "button"
+                });
+                cityButton.addClass("btn btn-info btn-block city-button");
+                $(".input-group-append").prepend(cityButton);
+                //Adds click event to the new button. Is passes the text from the button as a function argument to generate new AJAX query URL when calling searchWeather()
+                cityButton.on("click", function (event) {
+                    event.preventDefault()
+                    var cityButtonText = ($(this).text());
+                    searchWeather(cityButtonText)
+                })
+            }}
+    
+        )}
+
+// ^ PERSISTENT BUTTONS (ON RELOAD)
 // Function to keep city buttons persistent on page reload
 $(document).ready(function () {
     //Gets previously searched cities from local storage. If none found, returns.
