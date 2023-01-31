@@ -92,3 +92,8 @@ font-weight: bold;
     margin: 10px 0px;
 
   }
+
+  /* capitalizes first letters of button text */
+  .btn {
+    text-transform: capitalize;
+  }
