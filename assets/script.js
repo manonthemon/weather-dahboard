@@ -1,5 +1,6 @@
 //CURRENT DATE VARIABLE
 var currentDate = moment().format("DD/MM/YYYY");
+var APIKey = "f330e129449abaac86bd926a76054f1f";
 
 //^CLEAR ALL BUTTON
 // Clears all weather content from local storage and page
@@ -12,24 +13,21 @@ $("#clear-button").on("click", function (event) {
 })
 
 //^ MAIN WEATHER SEARCH FUNCTION 
-//assigned later to search button
+//Assigned later to search button
 function searchWeather(cityButtonText) {
-    var APIKey = "f330e129449abaac86bd926a76054f1f";
-    // Takes variable used in making the URL takes either the value of function argument or of the search input
+    // Takes variable used in making the URL takes either the value of searchWeather function argument or of the search input
     var city = cityButtonText || $('#search-input').val();
     // This builds the URL to query the database about the geographical coordinates of user selected location 
     var geoQueryUrl = "https://api.openweathermap.org/geo/1.0/direct?q=" + city + "&appid=" + APIKey;
-
     //This clears the today and forecast sections before printing new query results
     $("#today").html("")
     $("#forecast").html("")
-
+ 
     //AJAX call to get the data from the geoQueryUrl above
     $.ajax({
         url: geoQueryUrl,
         method: "GET"
     }).then(function (geoResponse) {
-
         // Assigning lat and lon from resulting object to variables to be used in next query URL
         var latitude = (geoResponse[0].lat).toFixed(2)
         var longitude = (geoResponse[0].lon).toFixed(2)
@@ -37,31 +35,31 @@ function searchWeather(cityButtonText) {
         // building the new url for the query, this time about the weather forecast, using coordinates received above
         var forecastQueryURL = "https://api.openweathermap.org/data/2.5/forecast?lat=" + latitude + "&lon=" + longitude + "&appid=" + APIKey
 
-        //AJAX call to get the data about weather forecast
+        //AJAX call to get the data about weather forecast for the location defined above
         $.ajax({
             url: forecastQueryURL,
             method: "GET",
         }).then(function (forecastResponse) {
 
-            // Variables for current temperature, wind and humidity
+            // Variables for today's temperature, wind and humidity
             var temp = ((forecastResponse.list[0].main.temp) - 273.15).toFixed(2)
             var wind = (forecastResponse.list[0].wind.speed).toFixed(1)
             var humidity = (forecastResponse.list[0].main.humidity)
 
             //^TODAY SECTION
-            // Code to generate weather icon
+            // Generates today's weather icon
             var iconCode = forecastResponse.list[0].weather[0].icon;
             var icon = $('<img>');
             icon.attr({
                 'id': 'icon',
                 'src': "https://openweathermap.org/img/wn/" + iconCode + ".png"
             });
-            //Generate a div holding today weather info and append its contents
+            // Generates a div holding today weather info and append its contents
             var todayCard = $("<div>");
             todayCard.addClass("today-card-body");
             var todayHeaderDiv = $("<div>");
             todayHeaderDiv.css("display", "flex")
-            todayHeaderDiv.css ("text-transform", "capitalize")
+            todayHeaderDiv.css("text-transform", "capitalize")
             todayHeaderDiv.append("<h2>" + city + " ( " + currentDate + ")" + " </h2>")
                 .append(icon)
             todayCard.append("<p>Temp: " + temp + " &deg;C</p>" + "<p>Wind: " + wind + " KPH</p>" + "<p>Humidity: " + humidity + " %</p>");
@@ -69,7 +67,7 @@ function searchWeather(cityButtonText) {
             $("#today").append(todayCard);
 
             //^FORECAST SECTION
-            //First it uses a loop to make arrays of icon codes, temperatures, winds and humidity for the next 5 days
+            //First it uses a loop to make arrays of icon codes, temperatures, winds and humidity for the next 5 days. Only takes data for 12:00 each day.
             var icons = [], temps = [], winds = [], humid = [];
             for (var j = 7; j < forecastResponse.list.length; j += 8) {
                 icons.push(forecastResponse.list[j].weather[0].icon);
@@ -94,24 +92,21 @@ function searchWeather(cityButtonText) {
                 forecastCard.append("<p>Temp: " + temps[i] + " °C</p>" + "<p>Wind: " + winds[i] + " KPH</p>" + "<p>Humidity: " + humid[i] + " %</p>");
                 $("#forecast").append(forecastCard);
             }
-           
         })
     })
 }
 
 //^ MAIN SEARCH BUTTON 
-// This is the .on("click") event of the main search button
+// This is the on click event of the main search button
 $("#search-button").on("click", function (event) {
     event.preventDefault()
     //This receives an array with searched cities from local storage or creates a new array if local storage empty
     cityArray = JSON.parse(localStorage.getItem("cityArray")) || [];
-    console.log(cityArray);
     // Then it checks if searched city already exists in array, If yes, returns.
     if (cityArray.includes($('#search-input').val())) {
-        console.log("city already selected")
         return;
     }
-    //Then it checks if text field is not empty. If yes, returns. If not, pushes city to local storage and calls functions to search for weather and create city buttons.
+    // Then it checks if search field is not empty. If yes, warns user and returns. If not, pushes city to local storage and calls functions to search for weather and create city buttons.
     if (!$('#search-input').val()) {
         alert("Please enter a valid city name");
         return;
@@ -125,9 +120,11 @@ $("#search-button").on("click", function (event) {
 
     // Clears search input field after search is clicked
     $(".form-input ").val("");
+    
+})
 
-    // ^NEW BUTTONS
-    // Function to create buttons with previously searched city names
+    // ^CITY BUTTONS MAKER FUNCTION
+    // Function to create buttons with previously searched city names and defined their on click event
     function cityButtonMaker() {
         var cityButton = $("<button>");
         cityButton.text($('#search-input').val());
@@ -144,7 +141,7 @@ $("#search-button").on("click", function (event) {
             searchWeather(cityButtonText)
         })
     }
-})
+
 
 // ^ PERSISTENT BUTTONS
 // Function to keep city buttons persistent on page reload
@@ -174,7 +171,3 @@ $(document).ready(function () {
         })
     }
 })
-
-
-//TODO Try to check for invalid city inputs
-//TODO to change letters to capital
