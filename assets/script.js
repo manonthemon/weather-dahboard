@@ -65,8 +65,14 @@ function searchWeather(cityButtonText) {
             todayCard.append("<p>Temp: " + temp + " &deg;C</p>" + "<p>Wind: " + wind + " KPH</p>" + "<p>Humidity: " + humidity + " %</p>");
             todayCard.prepend(todayHeaderDiv)
             $("#today").append(todayCard);
+            //I also included the forecast sections header here
+            var forecastHeader = $("<h3>")
+            forecastHeader.attr("id" , "forecast-header")
+            forecastHeader.text("5-Day Forecast")
+            $("#today").append(forecastHeader);
 
             //^FORECAST SECTION
+
             //First it uses a loop to make arrays of icon codes, temperatures, winds and humidity for the next 5 days. Only takes data for 12:00 each day.
             var icons = [], temps = [], winds = [], humid = [];
             for (var j = 7; j < forecastResponse.list.length; j += 8) {
@@ -142,7 +148,6 @@ $("#search-button").on("click", function (event) {
         })
     }
 
-
 // ^ PERSISTENT BUTTONS
 // Function to keep city buttons persistent on page reload
 $(document).ready(function () {
@@ -170,4 +175,5 @@ $(document).ready(function () {
             searchWeather(cityButtonText)
         })
     }
+    $(".form-input ").val("");
 })

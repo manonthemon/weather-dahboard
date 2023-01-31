@@ -97,3 +97,9 @@ font-weight: bold;
   .btn {
     text-transform: capitalize;
   }
+
+  #forecast-header {
+    display: flex;
+    margin-bottom:10px;
+
+  }
