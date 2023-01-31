@@ -21,7 +21,9 @@ I completed this project to implement skills acquired during the eight week of E
 - The temperature
 - The humidity
 
-4. When a user click on a city in the search history they are again presented with current and future conditions for that city
+4. When a user click on a city in the search history they are again presented with current and future conditions for that city.
+
+5. In addition, I coded in a "Clear All" button, which allows the user to clear his previous search results.
 
 The following screenshot presents the desired look of the deployed webapp:
 
