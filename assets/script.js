@@ -51,7 +51,7 @@ function searchWeather(cityButtonText) {
             var icon = $('<img>');
             icon.attr({
                 'id': 'icon',
-                'src': "https://openweathermap.org/img/wn/" + iconCode + ".png"
+                'src': "https://cors-anywhere.herokuapp.com/openweathermap.org/img/wn/" + iconCode + ".png"
             });
             //Generate a div holding today weather info and append its contents
             var todayCard = $("<div>");
@@ -85,7 +85,7 @@ function searchWeather(cityButtonText) {
                 var forecastIcon = $("<img>");
                 forecastIcon.attr({
                     'id': 'icon',
-                    'src': "https://openweathermap.org/img/wn/" + futureIconCode + ".png"
+                    'src': "https://cors-anywhere.herokuapp.com/openweathermap.org/img/wn/" + futureIconCode + ".png"
                 });
                 forecastCard.append(forecastIcon)
                 forecastCard.append("<p>Temp: " + temps[i] + " °C</p>" + "<p>Wind: " + winds[i]+ " KPH</p>" + "<p>Humidity: " + humid[i] + " %</p>");
